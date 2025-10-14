@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Antrian Dokter</string>
+
+    <!-- Auth -->
+    <string name="auth_title">Selamat Datang</string>
+    <string name="auth_email_hint">Email</string>
+    <string name="auth_password_hint">Password</string>
+    <string name="auth_login_button">Login</string>
+    <string name="auth_register_prompt">Belum punya akun? <b>Registrasi di sini</b></string>
+
+    <!-- Main -->
+    <string name="main_toolbar_title">Antrian Hari Ini</string>
+    <string name="main_nomor_dilayani_label">Nomor Dilayani</string>
+    <string name="main_nomor_anda_label">Nomor Anda</string>
+    <string name="main_estimation_format">Estimasi %1$d menit lagi</string>
+    <string name="empty_state_message">Belum ada antrian untuk hari ini.</string>
+</resources>
