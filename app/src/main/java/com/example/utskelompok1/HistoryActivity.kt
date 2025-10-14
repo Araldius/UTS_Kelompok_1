@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.utskelompok1.databinding.ActivityHistoryBinding
 
 class HistoryActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityHistoryBinding
     private lateinit var adapter: AntrianAdapter
 
@@ -15,9 +16,10 @@ class HistoryActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Riwayat Kunjungan"
 
         setupRecyclerView()
-        updateUI()
+        loadHistoryData()
     }
 
     private fun setupRecyclerView() {
@@ -26,10 +28,17 @@ class HistoryActivity : AppCompatActivity() {
         binding.rvHistory.adapter = adapter
     }
 
-    private fun updateUI() {
-        // Menampilkan semua antrian sebagai riwayat untuk demo
-        val historyList = DummyData.antrianList.sortedByDescending { it.nomorAntrian }
-        adapter.updateData(historyList)
+    private fun loadHistoryData() {
+        // Gabungkan data hari ini dan data riwayat
+        val allData = DummyData.antrianHariIni + DummyData.riwayatList
+
+        // Filter riwayat berdasarkan ID pengguna yang sedang login
+        val userHistory = allData.filter { it.userId == DummyData.currentLoggedInUserId }
+
+        // Urutkan berdasarkan tanggal (opsional, tapi lebih baik)
+        val sortedHistory = userHistory.sortedByDescending { it.tanggal }
+
+        adapter.updateData(sortedHistory)
     }
 
     override fun onSupportNavigateUp(): Boolean {

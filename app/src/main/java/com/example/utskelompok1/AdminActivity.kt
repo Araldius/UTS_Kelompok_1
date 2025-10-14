@@ -71,7 +71,7 @@ class AdminActivity : AppCompatActivity() {
         binding.progressBarAdmin.visibility = View.GONE
         binding.rvAntrianAdmin.visibility = View.VISIBLE
 
-        val antrianList = DummyData.antrianList
+        val antrianList = DummyData.antrianHariIni // Gunakan data hari ini
         binding.tvTotalPasien.text = "Total Pasien: ${antrianList.size}"
 
         val currentlyCalled = antrianList.find { it.status == "Dipanggil" }

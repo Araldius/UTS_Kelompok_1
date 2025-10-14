@@ -34,7 +34,7 @@ class DoctorActivity : AppCompatActivity() {
             Toast.makeText(this, "Pasien dipindah ke akhir.", Toast.LENGTH_SHORT).show()
         }
         binding.switchStatusPraktek.setOnCheckedChangeListener { _, isChecked ->
-            val status = if (isChecked) "Dibuka" else "Ditutup"
+            val status = if (isChecked) "Ditutup" else "Dibuka"
             Toast.makeText(this, "Pendaftaran $status", Toast.LENGTH_SHORT).show()
         }
     }
@@ -65,7 +65,7 @@ class DoctorActivity : AppCompatActivity() {
         binding.progressBarDokter.visibility = View.GONE
         binding.rvAntrianDokter.visibility = View.VISIBLE
 
-        val antrianList = DummyData.antrianList
+        val antrianList = DummyData.antrianHariIni // Gunakan data hari ini
         val currentlyCalled = antrianList.find { it.status == "Dipanggil" }
         binding.tvNamaPasienDipanggil.text = currentlyCalled?.namaPasien ?: "-"
         binding.tvKeluhanDipanggil.text = "Keluhan: Sakit Kepala" // Dummy text

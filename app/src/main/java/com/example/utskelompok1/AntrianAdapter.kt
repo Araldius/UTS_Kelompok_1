@@ -25,7 +25,8 @@ class AntrianAdapter(
         holder.binding.apply {
             tvNomorAntrian.text = antrian.nomorAntrian.toString()
             tvNamaPasien.text = antrian.namaPasien
-            tvStatus.text = antrian.status
+            // Format status dengan tanggal
+            tvStatus.text = "${antrian.status}  •  ${antrian.tanggal}"
 
             when (antrian.status) {
                 "Dipanggil" -> tvStatus.setTextColor(ContextCompat.getColor(context, R.color.green_primary))
@@ -33,7 +34,8 @@ class AntrianAdapter(
                 else -> tvStatus.setTextColor(ContextCompat.getColor(context, R.color.status_menunggu))
             }
 
-            if (antrian.userId == "currentUser") {
+            // Periksa ID pengguna yang sedang login
+            if (antrian.userId == DummyData.currentLoggedInUserId) {
                 root.strokeWidth = 4
                 root.strokeColor = ContextCompat.getColor(context, R.color.green_light)
             } else {

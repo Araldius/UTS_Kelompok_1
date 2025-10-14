@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ReportActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityReportBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +16,7 @@ class ReportActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Laporan Harian"
 
         updateUI()
     }
@@ -23,9 +25,12 @@ class ReportActivity : AppCompatActivity() {
         val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
         binding.tvReportDate.text = "Laporan untuk tanggal: ${dateFormat.format(Date())}"
 
-        val antrianList = DummyData.antrianList
+        // Menggunakan data antrianHariIni untuk laporan harian
+        val antrianList = DummyData.antrianHariIni
+
         val total = antrianList.size
         val selesai = antrianList.count { it.status == "Selesai" }
+        // Menunggu sekarang mencakup yang "Menunggu" dan "Dipanggil"
         val menunggu = antrianList.count { it.status == "Menunggu" || it.status == "Dipanggil" }
 
         binding.tvTotalPatients.text = total.toString()
@@ -34,6 +39,7 @@ class ReportActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        // Fungsi untuk tombol kembali di toolbar
         onBackPressedDispatcher.onBackPressed()
         return true
     }

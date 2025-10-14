@@ -36,12 +36,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         antrianAdapter = AntrianAdapter(emptyList()) { antrian ->
-            AlertDialog.Builder(this)
-                .setTitle("Konfirmasi")
-                .setMessage("Batalkan antrian nomor ${antrian.nomorAntrian}?")
-                .setPositiveButton("Ya") { _, _ -> Toast.makeText(this, "Antrian dibatalkan!", Toast.LENGTH_SHORT).show() }
-                .setNegativeButton("Tidak", null)
-                .show()
+            if (antrian.userId == DummyData.currentLoggedInUserId && antrian.status == "Menunggu") {
+                AlertDialog.Builder(this)
+                    .setTitle("Konfirmasi")
+                    .setMessage("Batalkan antrian nomor ${antrian.nomorAntrian}?")
+                    .setPositiveButton("Ya") { _, _ -> Toast.makeText(this, "Antrian dibatalkan! (Demo)", Toast.LENGTH_SHORT).show() }
+                    .setNegativeButton("Tidak", null)
+                    .show()
+            }
         }
         binding.rvAntrian.layoutManager = LinearLayoutManager(this)
         binding.rvAntrian.adapter = antrianAdapter
@@ -50,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateUI() {
         binding.progressBar.visibility = View.GONE
 
-        val antrianList = DummyData.antrianList
+        val antrianList = DummyData.antrianHariIni
         if (antrianList.isEmpty()){
             binding.tvEmptyState.visibility = View.VISIBLE
             binding.rvAntrian.visibility = View.GONE
@@ -63,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         val currentlyCalled = antrianList.find { it.status == "Dipanggil" }
         binding.tvNomorDilayani.text = currentlyCalled?.nomorAntrian?.toString() ?: "-"
 
-        val yourQueue = antrianList.find { it.userId == "currentUser" }
+        val yourQueue = antrianList.find { it.userId == DummyData.currentLoggedInUserId }
         binding.tvNomorAnda.text = yourQueue?.nomorAntrian?.toString() ?: "-"
 
         binding.tvEstimasiWaktu.text = "Estimasi 10 menit lagi"
@@ -75,9 +77,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_logout) {
-            startActivity(Intent(this, AuthActivity::class.java))
-            finishAffinity()
+        when (item.itemId) {
+            R.id.menu_history -> {
+                startActivity(Intent(this, HistoryActivity::class.java))
+                return true
+            }
+            R.id.menu_logout -> {
+                startActivity(Intent(this, AuthActivity::class.java))
+                finishAffinity()
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }
