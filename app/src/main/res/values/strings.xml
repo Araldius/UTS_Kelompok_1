@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Antrian Dokter</string>
+    <string name="app_name">MedQ</string>
 
     <!-- AuthActivity -->
     <string name="auth_title">Selamat Datang</string>

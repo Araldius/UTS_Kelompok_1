@@ -1,7 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.UTSKelompok1" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <!--
+        Base application theme for dark mode.
+        Tema ini akan otomatis diterapkan saat ponsel dalam mode gelap.
+    -->
+    <style name="Theme.UTS_Kelompok_1" parent="Theme.Material3.DayNight.NoActionBar">
+        <!--
+            Warna utama merek tetap sama (hijau),
+            namun Material 3 akan secara otomatis menyesuaikan warna latar belakang menjadi gelap
+            dan warna teks menjadi terang untuk kontras yang baik.
+        -->
+
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/green_primary</item>
+        <item name="colorPrimaryVariant">@color/green_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/green_light</item>
+        <item name="colorSecondaryVariant">@color/green_dark</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
 </resources>

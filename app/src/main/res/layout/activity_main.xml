@@ -77,7 +77,6 @@
                         android:id="@+id/tvNomorAnda"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
                         android:textSize="48sp"
                         android:textStyle="bold"
                         tools:text="15" />
@@ -86,8 +85,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:textSize="14sp"
-                        tools:text="Estimasi 20 menit lagi" />
+                        tools:text="Estimasi 10 menit lagi"
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
